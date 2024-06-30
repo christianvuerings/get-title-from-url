@@ -25,7 +25,7 @@ async function getTitle(url: string) {
   const data = await res.text();
 
   const $ = load(data);
-  const title = $("title").text();
+  const title = $("title").first().text();
   const metaTitle = $('meta[property="og:title"]').attr("content");
   const appleMobileWebAppTitle = $(
     'meta[name="apple-mobile-web-app-title"]',
@@ -34,6 +34,8 @@ async function getTitle(url: string) {
     .attr("content")
     ?.replaceAll(" ", "");
   const metaRefreshUrl = metaRefresh?.match(/url=(.*)/i)?.[1];
+
+  console.log({ title, metaTitle, appleMobileWebAppTitle, metaRefreshUrl });
 
   if (metaRefreshUrl) {
     return await getTitle(metaRefreshUrl);
