@@ -11,10 +11,12 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
     "next": "14.2.4",
+    "pdfjs-dist": "^4.3.136",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@playwright/test": "^1.45.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

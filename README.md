@@ -2,6 +2,12 @@
 
 https://get-title-from-url.vercel.app/api/get-title-from-url?url=https://www.google.com
 
+## Features
+
+- 🚀 Support meta + regular redirects
+- 📄 Support PDF files
+- ✅ Returns HTTP status code
+
 ## Development
 
 ```bash
