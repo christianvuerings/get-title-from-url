@@ -22,6 +22,7 @@ async function getTitle(url: string) {
       "User-Agent":
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
       "Accept-Language": "en-US,en;q=0.9",
+      "Accept-Encoding": "gzip, deflate, br",
     },
     next: {
       // Revalidate every 60 minutes
@@ -51,6 +52,7 @@ async function getTitle(url: string) {
   const data = await res.text();
   const $ = load(data);
   const title = $("head title").text();
+  const firstTitle = $("title").first().text();
   const metaTitle = $('meta[property="og:title"]').attr("content");
   const appleMobileWebAppTitle = $(
     'meta[name="apple-mobile-web-app-title"]',
@@ -60,6 +62,7 @@ async function getTitle(url: string) {
     ?.replaceAll(" ", "");
   const metaRefreshUrl = metaRefresh?.match(/url=(.*)/i)?.[1];
 
+  console.log(data);
   console.log({ title, metaTitle, appleMobileWebAppTitle, metaRefreshUrl });
 
   if (metaRefreshUrl) {
@@ -71,7 +74,7 @@ async function getTitle(url: string) {
   }
 
   return {
-    title: title || metaTitle || appleMobileWebAppTitle || "",
+    title: title || metaTitle || appleMobileWebAppTitle || firstTitle || "",
     status: res.status,
   };
 }

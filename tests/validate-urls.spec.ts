@@ -82,6 +82,31 @@ import { test, expect } from "@playwright/test";
       status: 200,
     },
   },
+  // Doesn't use a <head> tag to specify the <title />
+  {
+    url: "https://www.amazon.com/Philosophy-Software-Design-John-Ousterhout/dp/1732102201",
+    expected: {
+      title:
+        "A Philosophy of Software Design: Ousterhout, John: 9781732102200: Amazon.com: Books",
+      status: 200,
+    },
+  },
+  {
+    url: "https://www.amazon.com/Succeeding-Agile-Software-Development-Using/dp/0321579364",
+    expected: {
+      title:
+        "Succeeding with Agile: Software Development Using Scrum: Cohn, Mike: 9780321579362: Amazon.com: Books",
+      status: 200,
+    },
+  },
+  // LinkedIn requires an Accept-Encoding header, otherwise it returns a 999 status code
+  {
+    url: "https://www.linkedin.com/in/francinenavarro/",
+    expected: {
+      title: "Francine Navarro - Assembled | LinkedIn",
+      status: 200,
+    },
+  },
 ].forEach(({ url, expected }) => {
   test(`validate url: ${url}`, async ({ request }) => {
     const response = await (
