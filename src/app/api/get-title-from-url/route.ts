@@ -62,8 +62,8 @@ async function getTitle(url: string) {
     ?.replaceAll(" ", "");
   const metaRefreshUrl = metaRefresh?.match(/url=(.*)/i)?.[1];
 
-  console.log(data);
-  console.log({ title, metaTitle, appleMobileWebAppTitle, metaRefreshUrl });
+  // console.log(data);
+  // console.log({ title, metaTitle, appleMobileWebAppTitle, metaRefreshUrl });
 
   if (metaRefreshUrl) {
     return await getTitle(
