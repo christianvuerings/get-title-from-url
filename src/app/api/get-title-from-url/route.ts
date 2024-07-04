@@ -36,6 +36,10 @@ async function getTitle(url: string) {
     // Such as a PDF on GitHub: https://github.com/papers-we-love/papers-we-love/blob/master/design/out-of-the-tar-pit.pdf
     res.headers.get("content-type") === "application/pdf"
   ) {
+    // Imports required to make the pdf-js work on Vercel: https://github.com/vercel/next.js/issues/58313
+    await import("pdfjs-dist/legacy/build/pdf.mjs");
+    // @ts-expect-error
+    await import("pdfjs-dist/legacy/build/pdf.worker.min.mjs");
     const pdf = await pdfjsLib.getDocument(url).promise;
     // get the title of the pdf
     const metadata = await pdf.getMetadata();
