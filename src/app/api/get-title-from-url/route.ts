@@ -73,8 +73,19 @@ async function getTitle(url: string) {
     );
   }
 
+  const formattedTitle = (
+    title ||
+    metaTitle ||
+    appleMobileWebAppTitle ||
+    firstTitle ||
+    ""
+  )
+    .trim()
+    // Replace non-breaking space with a regular space - required for web.dev and other google sites
+    .replace(/\u00a0/g, " ");
+
   return {
-    title: title || metaTitle || appleMobileWebAppTitle || firstTitle || "",
+    title: formattedTitle,
     status: res.status,
   };
 }

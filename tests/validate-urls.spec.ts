@@ -113,10 +113,6 @@ import { test, expect } from "@playwright/test";
       await request.get(`/api/get-title-from-url?url=${url}`)
     ).json();
 
-    // Remove non-breaking spaces - required for web.dev and other google sites
-    response.title = response.title.replace(/\u00a0/g, " ");
-    expected.title = expected.title.replace(/\u00a0/g, " ");
-
     expect(response).toEqual(expected);
   });
 });

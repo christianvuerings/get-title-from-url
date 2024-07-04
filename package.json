@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
+    "dev": "next dev",
+    "lint": "next lint",
     "start": "next start",
-    "lint": "next lint"
+    "test": "playwright test",
+    "test:watch": "PWTEST_WATCH=1 playwright test"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
